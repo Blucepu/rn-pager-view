@@ -15,8 +15,7 @@
     "common",
     "react-native-pager-view.podspec"
   ],
-  "scripts": 
-  },
+  "scripts": {},
   "keywords": [
     "react-native",
     "ios",
