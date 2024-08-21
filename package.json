@@ -1,5 +1,5 @@
 {
-  "name": "react-native-pager-view",
+  "name": "rn-pager-view",
   "version": "6.3.4",
   "description": "React Native wrapper for Android and iOS ViewPager",
   "main": "lib/commonjs/index",
@@ -13,43 +13,22 @@
     "android",
     "ios",
     "common",
-    "react-native-pager-view.podspec",
-    "!lib/typescript/example",
-    "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "react-native-pager-view.podspec"
   ],
-  "scripts": {
-    "test": "jest",
-    "typescript": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
-    "release": "release-it",
-    "releaseNext": "release-it --npm.tag=next --preRelease=rc",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn && yarn example pods",
-    "bootstrap-no-pods": "yarn example && yarn",
-    "bootstrap-fabric": "yarn example && yarn && yarn example pods-fabric",
-    "test:e2e:android": "bash ./scripts/run-maestro-tests.sh android",
-    "run-example-android": "cd example;react-native run-android --mode \"Release\"",
-    "run-example-ios": "cd example;react-native run-ios --mode \"Release\" --simulator \"iPhone 13 (15.2)\"",
-    "test:e2e:ios": "bash ./scripts/run-maestro-tests.sh ios",
-     "postinstall": ""
+  "scripts": 
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Blucepu/react-native-pager-view",
+  "repository": "https://github.com/Blucepu/rn-pager-view",
   "author": "troZee <hello@callstack.com> (https://github.com/callstack)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Blucepu/react-native-pager-view/issues"
+    "url": "https://github.com/Blucepu/rn-pager-view/issues"
   },
-  "homepage": "https://github.com/Blucepu/react-native-pager-view#readme",
+  "homepage": "https://github.com/Blucepu/rn-pager-view#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -86,8 +65,6 @@
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
     ]
   },
   "eslintConfig": {
@@ -128,19 +105,5 @@
     "android": {
       "javaPackageName": "com.reactnativepagerview"
     }
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
   }
 }
