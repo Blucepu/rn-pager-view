@@ -35,7 +35,7 @@
     "test:e2e:android": "bash ./scripts/run-maestro-tests.sh android",
     "run-example-android": "cd example;react-native run-android --mode \"Release\"",
     "run-example-ios": "cd example;react-native run-ios --mode \"Release\" --simulator \"iPhone 13 (15.2)\"",
-    "test:e2e:ios": "bash ./scripts/run-maestro-tests.sh ios"，
+    "test:e2e:ios": "bash ./scripts/run-maestro-tests.sh ios",
      "postinstall": ""
   },
   "keywords": [
