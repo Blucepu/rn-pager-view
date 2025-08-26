@@ -14,6 +14,7 @@ import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.viewmanagers.RNCViewPagerManagerDelegate
 import com.facebook.react.viewmanagers.RNCViewPagerManagerInterface
 import com.facebook.soloader.SoLoader
+import com.reactnativepagerview.PagerViewViewManagerImpl.reduceDragSensitivity
 import com.reactnativepagerview.event.PageScrollEvent
 import com.reactnativepagerview.event.PageScrollStateChangedEvent
 import com.reactnativepagerview.event.PageSelectedEvent
@@ -37,7 +38,7 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>(), RNCViewPa
         return PagerViewViewManagerImpl.NAME
     }
 
-    override fun receiveCommand(root: NestedScrollableHost, commandId: String?, args: ReadableArray?) {
+    override fun receiveCommand(root: NestedScrollableHost, commandId: String, args: ReadableArray?) {
         mDelegate.receiveCommand(root, commandId, args)
     }
 
@@ -85,10 +86,12 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>(), RNCViewPa
             )
         }
         host.addView(vp)
+        val view = PagerViewViewManagerImpl.getViewPager(host)
+        view.reduceDragSensitivity(3)
         return host
     }
 
-    override fun addView(host: NestedScrollableHost, child: View?, index: Int) {
+    override fun addView(host: NestedScrollableHost, child: View, index: Int) {
         PagerViewViewManagerImpl.addView(host, child, index)
     }
 
@@ -170,11 +173,6 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>(), RNCViewPa
 
     @ReactProp(name = "keyboardDismissMode")
     override fun setKeyboardDismissMode(view: NestedScrollableHost?, value: String?) {
-        return
-    }
-
-    @ReactProp(name = "useLegacy")
-    override fun setUseLegacy(view: NestedScrollableHost?, value: Boolean) {
         return
     }
 

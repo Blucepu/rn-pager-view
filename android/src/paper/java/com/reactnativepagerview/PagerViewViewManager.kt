@@ -13,7 +13,6 @@ import com.facebook.react.uimanager.UIManagerModule
 import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.uimanager.events.EventDispatcher
-import com.reactnativepagerview.PagerViewViewManagerImpl.reduceDragSensitivity
 import com.reactnativepagerview.event.PageScrollEvent
 import com.reactnativepagerview.event.PageScrollStateChangedEvent
 import com.reactnativepagerview.event.PageSelectedEvent
@@ -67,12 +66,10 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>() {
             eventDispatcher.dispatchEvent(PageSelectedEvent(host.id, vp.currentItem))
         }
         host.addView(vp)
-        val view = PagerViewViewManagerImpl.getViewPager(host)
-        view.reduceDragSensitivity(3)
         return host
     }
 
-    override fun addView(host: NestedScrollableHost, child: View?, index: Int) {
+    override fun addView(host: NestedScrollableHost, child: View, index: Int) {
         PagerViewViewManagerImpl.addView(host, child, index)
     }
 
@@ -128,12 +125,6 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>() {
         PagerViewViewManagerImpl.setLayoutDirection(host, value)
     }
 
-    // @ReactProp(name = "scrollSensitivity", defaultInt = 8)
-    // fun setScrollSensitivity(host: NestedScrollableHost, value: Int) {
-    //     val view = PagerViewViewManagerImpl.getViewPager(host)
-    //     view.reduceDragSensitivity(8)
-    // }
-
     override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Map<String, String>> {
         return MapBuilder.of(
                 PageScrollEvent.EVENT_NAME, MapBuilder.of("registrationName", "onPageScroll"),
@@ -141,7 +132,7 @@ class PagerViewViewManager : ViewGroupManager<NestedScrollableHost>() {
                 PageSelectedEvent.EVENT_NAME, MapBuilder.of("registrationName", "onPageSelected"))
     }
 
-    override fun receiveCommand(root: NestedScrollableHost, commandId: String?, args: ReadableArray?) {
+    override fun receiveCommand(root: NestedScrollableHost, commandId: String, args: ReadableArray?) {
         super.receiveCommand(root, commandId, args)
         val view = PagerViewViewManagerImpl.getViewPager(root)
         Assertions.assertNotNull(view)
